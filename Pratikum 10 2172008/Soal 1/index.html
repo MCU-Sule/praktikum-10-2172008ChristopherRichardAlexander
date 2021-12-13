@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="2172008 Christopher Richard ALexander" />
+    <title>Soal 1</title>
+    <style>
+      #penjumlahan {
+        background-color: darkgoldenrod;
+        font-weight: bold;
+        font-size: xx-large;
+      }
+      #pengurangan {
+        background-color: rgb(21, 115, 192);
+        font-weight: bold;
+        font-size: xx-large;
+      }
+      #perkalian {
+        background-color: purple;
+        font-weight: bold;
+        font-size: xx-large;
+      }
+      #bilangan {
+        background-color: lightcoral;
+        font-weight: bold;
+        font-size: xx-large;
+      }
+      input {
+        margin-top: 20px;
+      }
+      button {
+        width: 80px;
+        height: 30px;
+      }
+      .buatcek{
+        border: 2px solid blue;
+        background-color: aqua;
+      }
+      .buatjawab{
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <!----------------------------------Penjumlahan-------------------------------->
+    <div id="penjumlahan">Penjumlahan</div>
+    <input id="random" type="number" readonly /> +
+    <input id="random1" type="number" readonly /> = <input id="jawaban" type="text" />
+    <button class="buatcek" onclick="cek()">Hitung</button> <br />
+    <button class="buatjawab" onclick="penjumlahan()">Generate</button> <p id="test"></p>
+    <!----------------------------------Pengurangan--------------------------------->
+    <div id="pengurangan">Pengurangan</div>
+    <input id="random2" type="text" readonly /> - <input id="random3" type="text" readonly /> =
+    <input id="jawaban1" type="text" /><button class="buatcek" onclick="cek1()">Hitung</button> <br />
+    <button class="buatjawab" onclick="pengurangan()">Generate</button> <p id="test1"></p>
+    <!----------------------------------Perkalian--------------------------------->
+    <div id="perkalian">Perkalian</div>
+    <input id="random4" type="text" readonly /> * <input id="random5" type="text" readonly /> =
+    <input id="jawaban2" type="text" /> <button  class="buatcek" onclick="cek2()">Hitung</button> <br />
+    <button class="buatjawab" onclick="perkalian()">Generate</button> <p id="test2"></p>
+    <!----------------------------------Bilangan--------------------------------->
+    <div id="bilangan">Bilangan</div>
+    <input id="random6" type="text" readonly /> = <input id="jawaban3" type="text" />
+    <input id="jawaban4" type="text" /> <input id="jawaban5" type="text" /> <button  class="buatcek" onclick="cek3()">Hitung</button> <br />
+    <button class="buatjawab" onclick="bilangan()">Generate</button><p id="test3"></p>
+
+    <script>
+        function penjumlahan() {
+            let input = document.querySelector("#random");
+            let input1 = document.querySelector("#random1");
+            input.value = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+            input1.value = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+         }
+
+        function pengurangan() {
+            let input = document.querySelector("#random2");
+            let input1 = document.querySelector("#random3");
+            input.value = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+            input1.value = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+        }
+
+        function perkalian() {
+            let input = document.querySelector("#random4");
+            let input1 = document.querySelector("#random5");
+            input.value = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+            input1.value = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+        }
+
+        function bilangan(){
+            let input = document.querySelector("#random6");
+            input.value = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+        }
+
+        function cek(){
+            let soal = parseInt(document.getElementById("random").value);
+            let soal1 = parseInt(document.getElementById("random1").value);
+            let jawab = document.getElementById("jawaban").value;
+            let answer = soal+soal1;
+
+            if(answer==jawab){
+                document.querySelector("#test").innerHTML="Jawaban kamu benar";
+            }
+            else{
+                document.querySelector("#test").innerHTML="Jawaban kamu salah";
+            }
+        }
+
+        function cek1(){
+            let soal = parseInt(document.getElementById("random2").value);
+            let soal1 = parseInt(document.getElementById("random3").value);
+            let jawab = document.getElementById("jawaban1").value;
+            let answer = soal-soal1;
+
+            if(answer==jawab){
+                document.querySelector("#test1").innerHTML="Jawaban kamu benar";
+            }
+            else{
+                document.querySelector("#test1").innerHTML="Jawaban kamu salah";
+            }
+        }
+
+        function cek2(){
+            let soal = parseInt(document.getElementById("random4").value);
+            let soal1 = parseInt(document.getElementById("random5").value);
+            let jawab = document.getElementById("jawaban2").value;
+            let answer = soal*soal1;
+
+            if(answer==jawab){
+                document.querySelector("#test2").innerHTML="Jawaban kamu benar";
+            }
+            else{
+                document.querySelector("#test2").innerHTML="Jawaban kamu salah";
+            }
+        }
+
+        function cek3(){
+            let soal = document.getElementById("random6").value;
+            let jawab = document.getElementById("jawaban3").value;
+            let jawab1 = document.getElementById("jawaban4").value;
+            let jawab2 = document.getElementById("jawaban5").value;
+            let answer = jawab+jawab1+jawab2;
+            if(soal==answer){
+                document.querySelector("#test3").innerHTML="Jawaban kamu benar";
+            } 
+            else{
+                document.querySelector("#test3").innerHTML="Jawaban kamu salah";
+            }
+        }
+    </script>
+  </body>
+</html>

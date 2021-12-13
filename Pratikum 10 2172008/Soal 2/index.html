@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="2172008 Christopher Richard" />
+    <title>Soal 2</title>
+    <style>
+      .kotak {
+        border: 2px solid black;
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: auto;
+        padding: 25px auto;
+        font-size: 100px;
+      }
+
+      .container {
+        width: 312px;
+        margin: auto;
+        height: 400px;
+        text-align: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      button {
+        height: 50px;
+        width: 160px;
+      }
+      p {
+        font-size: x-large;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <div class="container">
+      <div onclick="choose('one')" id="one" class="kotak"></div>
+      <div onclick="choose('two')" id="two" class="kotak"></div>
+      <div onclick="choose('three')" id="three" class="kotak"></div>
+      <div onclick="choose('four')" id="four" class="kotak"></div>
+      <div onclick="choose('five')" id="five" class="kotak"></div>
+      <div onclick="choose('six')" id="six" class="kotak"></div>
+      <div onclick="choose('seven')" id="seven" class="kotak"></div>
+      <div onclick="choose('eight')" id="eight" class="kotak"></div>
+      <div onclick="choose('nine')" id="nine" class="kotak"></div>
+      <p id="bagian">X's turn</p>
+      <button onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+      const win = [
+        ["one", "two", "three"],
+        ["four", "five", "six"],
+        ["seven", "eight", "nine"],
+        ["one", "four", "seven"],
+        ["two", "five", "eight"],
+        ["three", "six", "nine"],
+        ["one", "five", "nine"],
+        ["three", "five", "seven"],
+      ];
+      const x = [];
+      const y = [];
+      let giliran = 0;
+      let a = 0;
+      let counter = 0;
+      let condition = 0;
+      function choose(id) {
+        if (condition == 0) {
+          if (giliran == 0) {
+            giliran = 1;
+            document.querySelector("#" + id).innerHTML = "X";
+            document.querySelector("#bagian").innerHTML = "O's turn";
+            x[a] = id;
+            for (let i = 0; i < win.length; i++) {
+              counter = 0;
+              for (let j = 0; j < x.length; j++) {
+                if (
+                  x[j] == win[i][0] ||
+                  x[j] == win[i][1] ||
+                  x[j] == win[i][2]
+                ) {
+                  counter++;
+                }
+                if (counter == 3) {
+                  document.querySelector("#bagian").innerHTML =
+                    "Player X has won!!!";
+                  condition = 1;
+                  document.getElementById(win[i][0]).style.backgroundColor="yellow";
+                  document.getElementById(win[i][1]).style.backgroundColor="yellow";
+                  document.getElementById(win[i][2]).style.backgroundColor="yellow";
+                  return;
+                }
+              }
+            }
+            if (a == 4) {
+              condition=1;
+              document.querySelector("#bagian").innerHTML = "DRAW !!!";
+            }
+          } else {
+            document.querySelector("#" + id).innerHTML = "O";
+            document.querySelector("#bagian").innerHTML = "X's turn";
+            giliran = 0;
+            y[a] = id;
+            for (let i = 0; i < win.length; i++) {
+              counter = 0;
+              for (let j = 0; j < y.length; j++) {
+                if (
+                  y[j] == win[i][0] ||
+                  y[j] == win[i][1] ||
+                  y[j] == win[i][2]
+                ) {
+                  counter++;
+                }
+                if (counter == 3) {
+                  document.querySelector("#bagian").innerHTML =
+                    "Player O has won!!!";
+                  condition = 1;
+                  document.getElementById(win[i][0]).style.backgroundColor="yellow";
+                  document.getElementById(win[i][1]).style.backgroundColor="yellow";
+                  document.getElementById(win[i][2]).style.backgroundColor="yellow";
+                }
+              }
+            }
+            a++;
+          }
+        } else {
+          alert("Please Reset the game");
+        }
+      }
+      function reset() {
+        condition = 0;
+        document.querySelector("#one").innerHTML = "";
+        document.querySelector("#two").innerHTML = "";
+        document.querySelector("#three").innerHTML = "";
+        document.querySelector("#four").innerHTML = "";
+        document.querySelector("#five").innerHTML = "";
+        document.querySelector("#six").innerHTML = "";
+        document.querySelector("#seven").innerHTML = "";
+        document.querySelector("#eight").innerHTML = "";
+        document.querySelector("#nine").innerHTML = "";
+        document.querySelector("#bagian").innerHTML = "X's turn";
+        document.getElementById("one").style.backgroundColor="white"
+        document.getElementById("two").style.backgroundColor="white"
+        document.getElementById("three").style.backgroundColor="white"
+        document.getElementById("four").style.backgroundColor="white"
+        document.getElementById("five").style.backgroundColor="white"
+        document.getElementById("six").style.backgroundColor="white"
+        document.getElementById("seven").style.backgroundColor="white"
+        document.getElementById("eight").style.backgroundColor="white"
+        document.getElementById("nine").style.backgroundColor="white"
+        x.length = [];
+        y.length = [];
+        giliran = 0;
+        a = 0;
+        counter = 0;
+      }
+    </script>
+  </body>
+</html>

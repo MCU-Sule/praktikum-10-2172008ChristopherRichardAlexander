@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="2172008 Christopher Richard Alexander" />
+    <title>Soal 3</title>
+    <style>
+      #container {
+        margin: auto;
+        width: 900px;
+        padding-top: 250px;
+      }
+      .kotak {
+        border: 2px solid black;
+        height: 150px;
+        width: 150px;
+        float: left;
+        text-align: center;
+      }
+      .pilih {
+        border: 5px solid red;
+        height: 150px;
+        width: 150px;
+        float: left;
+        text-align: center;
+      }
+      button {
+        margin-top: 10px;
+        width: 60px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="satu" class="kotak">0</div>
+      <div id="dua" class="kotak">0</div>
+      <div id="tiga" class="kotak">0</div>
+      <div id="empat" class="kotak">0</div>
+      <div id="lima" class="kotak">0</div>
+      <button onclick="cek()">Guess</button><br />
+      <button onclick="reset()">Reset</button>
+    </div>
+    <script>
+      var id = "satu";
+      var temp = 0;
+      document.getElementById(id).classList.add("pilih");
+      var random = Math.floor(Math.random() * (10000 - 1));
+
+      document.addEventListener("keydown", function (e) {
+        switch (e.keyCode) {
+          case 37:
+            document.getElementById(id).classList.remove("pilih");
+            if (id == "satu") {
+              id = "lima";
+            } else if (id == "dua") {
+              id = "satu";
+            } else if (id == "tiga") {
+              id = "dua";
+            } else if (id == "empat") {
+              id = "tiga";
+            } else if (id == "lima") {
+              id = "empat";
+            }
+            document.getElementById(id).classList.add("pilih");
+            break;
+          case 38:
+            temp = document.getElementById(id).innerHTML;
+            temp++;
+            if (temp > 9) {
+              temp = 0;
+            }
+            document.getElementById(id).innerHTML = temp;
+            break;
+          case 39:
+            document.getElementById(id).classList.remove("pilih");
+            if (id == "satu") {
+              id = "dua";
+            } else if (id == "dua") {
+              id = "tiga";
+            } else if (id == "tiga") {
+              id = "empat";
+            } else if (id == "empat") {
+              id = "lima";
+            } else if (id == "lima") {
+              id = "satu";
+            }
+            document.getElementById(id).classList.add("pilih");
+            break;
+          case 40:
+            temp = document.getElementById(id).innerHTML;
+            temp--;
+            if (temp < 0) {
+              temp = 9;
+            }
+            document.getElementById(id).innerHTML = temp;
+            break;
+        }
+      });
+      console.log(random);
+      function cek() {
+        let satu = document.querySelector("#satu").innerHTML;
+        let dua = document.querySelector("#dua").innerHTML;
+        let tiga = document.querySelector("#tiga").innerHTML;
+        let empat = document.querySelector("#empat").innerHTML;
+        let lima = document.querySelector("#lima").innerHTML;
+        let tebak = satu + dua + tiga + empat + lima;
+
+        if (tebak < random) {
+          alert("Angka terlalu kecil");
+        } else if (tebak > random) {
+          alert("Angka terlalu besar");
+        } else {
+          alert("you win");
+        }
+        console.log(tebak);
+      }
+      function reset() {
+        document.querySelector("#satu").innerHTML = "0";
+        document.querySelector("#dua").innerHTML = "0";
+        document.querySelector("#tiga").innerHTML = "0";
+        document.querySelector("#empat").innerHTML = "0";
+        document.querySelector("#lima").innerHTML = "0";
+        random = Math.floor(Math.random() * (10000 - 1));
+        console.log(random);
+      }
+    </script>
+  </body>
+</html>
